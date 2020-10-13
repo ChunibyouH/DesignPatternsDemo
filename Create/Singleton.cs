@@ -6,6 +6,7 @@ namespace DesignPatterns.Create
 {
     /// <summary>
     /// 单例 独一无二 确保只有一个实例
+    /// 常用场景：应用中有对象需要是全局的且唯一
     /// </summary>
     public class Singleton
     {
