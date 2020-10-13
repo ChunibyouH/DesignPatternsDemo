@@ -2,19 +2,27 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DesignPatterns.Create
+namespace DesignPatterns.Create.SimpleFactoryType
 {
+    //工厂角色：该模式的核心，负责实现创建所有产品实例的内部逻辑，提供一个静态的工厂方法GetProduct()，返回抽象产品类型Product的实例。
+    //抽象产品角色：所有产品类的父类，封装了各种产品对象的共有方法，它的引入将提高系统的灵活性，使得在工厂类中只需要定义一个通用的工厂方法，因为所有创建的具体产品对象都是其子类对象。
+    //具体产品角色：简单工厂模式的创建目标，所有被创建的对象都充当这个角色的某个具体类的实例。
+
     public enum SimpleFactoryType
     {
         Face,
         Finger
     }
 
+    /// <summary>
+    /// 抽象产品角色
+    /// </summary>
     public interface SimpleFactoryAuthentication
     {
         void Authentication();
     }
 
+    #region 具体产品角色
     public class FaceAuthentication : SimpleFactoryAuthentication
     {
         public void Authentication()
@@ -30,6 +38,7 @@ namespace DesignPatterns.Create
             Console.WriteLine("指纹人证成功");
         }
     }
+    #endregion
 
 
     /// <summary>
@@ -42,6 +51,11 @@ namespace DesignPatterns.Create
     /// </summary>
     public class SimpleFactory
     {
+        /// <summary>
+        /// 工厂角色
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static SimpleFactoryAuthentication GetAuthentication(SimpleFactoryType type)
         {
             switch (type)
